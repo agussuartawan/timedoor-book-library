@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('ratings', function (Blueprint $table) {
             $table->uuid('id');
             $table->foreignIdFor(Book::class);
-            $table->float('rating');
+            $table->integer('rating');
             $table->timestamps();
         });
     }

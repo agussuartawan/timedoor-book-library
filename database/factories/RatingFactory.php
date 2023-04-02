@@ -20,7 +20,7 @@ class RatingFactory extends Factory
         $books = Book::pluck('id')->toArray();
         return [
             'id' => fake()->uuid(),
-            'rating' => fake()->randomFloat(1, 1, 10),
+            'rating' => fake()->randomElement(1, 10),
             'book_id' => fake()->randomElement($books)
         ];
     }
