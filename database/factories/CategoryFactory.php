@@ -18,7 +18,7 @@ class CategoryFactory extends Factory
     {
         return [
             'id' => fake()->uuid(),
-            'name' => fake()->name(),
+            'name' => fake()->sentence(3),
             'description' => fake()->text()  
         ];
     }

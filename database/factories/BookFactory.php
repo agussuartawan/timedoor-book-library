@@ -23,7 +23,7 @@ class BookFactory extends Factory
         $categories = Category::pluck('id')->toArray();
         return [
             'id' => fake()->uuid(),
-            'title' => fake()->name(),
+            'title' => fake()->sentence(4),
             'description' => fake()->text(),
             'author_id' => fake()->randomElement($authors),
             'category_id' => fake()->randomElement($categories)

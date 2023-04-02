@@ -39,10 +39,11 @@ class BookController extends Controller
     {
         $authorId = $request->author_id;
         $authors = Author::select('id', 'name')->get();
+        $ratings = array(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
 
         $books = $authorId ? Book::where('author_id', $authorId)->get() : [];
 
-        return view('rating', compact('authors', 'books'));
+        return view('rating', compact('authors', 'books', 'ratings'));
     }
 
     public function storeRating(Request $request)
