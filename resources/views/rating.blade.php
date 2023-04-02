@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <form action="{{ route('ratings.store') }}" class="mt-3">
+    <form action="{{ route('ratings.store') }}" method="POST" class="mt-3">
         @csrf
         <div class="form-group mb-3">
             <select name="author_id" id="author_id" class="form-select" onchange="filter()">
@@ -17,6 +17,9 @@
                     <option value="{{ $book->id }}">{{ $book->title }}</option>
                 @endforeach
             </select>
+            @error('book_id')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>        
 
         <div class="form-group mb-3">
@@ -25,6 +28,9 @@
                     <option value="{{ $i }}">{{ $i }}</option>
                 @endfor
             </select>
+            @error('rating')
+                <small class="text-danger">{{ $message }}</small>
+            @enderror
         </div>
 
         <button class="btn btn-primary">Submit</button>

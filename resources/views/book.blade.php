@@ -19,6 +19,8 @@
                 <input type="text" id="search" name="search" class="form-control" onchange="submit()" value="{{ request()->get('search') }}">
             </div>
         </div>
+
+        <button class="btn btn-primary mt-3">Submit</button>
     </form>
 
     <table class="table table-striped">

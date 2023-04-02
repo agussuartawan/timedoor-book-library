@@ -8,6 +8,7 @@ use App\Models\Rating;
 use Illuminate\Contracts\View\View;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BookController extends Controller
 {
@@ -19,9 +20,19 @@ class BookController extends Controller
         return view('book', compact('books', 'limits'));
     }
 
-    public function atuhors() :View
+    public function authors() :View
     {
-        return view('author');
+        $authors = Author::select('authors.*', DB::raw('count(distinct ratings.id) as voter'))
+            ->leftJoin('books', 'authors.id', '=', 'books.author_id')
+            ->leftJoin('ratings', 'books.id', '=', 'ratings.book_id')
+            ->where('ratings.rating', '>', 5)
+            ->groupBy('authors.id')
+            ->having('voter', '>', 0)
+            ->orderByDesc('voter')
+            ->limit(10)
+            ->get();
+
+        return view('author', compact('authors'));
     }
 
     public function rating(Request $request) :View 
@@ -41,7 +52,7 @@ class BookController extends Controller
             'rating' => 'required'
         ]);
         Rating::create($request->all());
-        return to_route('books');
+        return to_route('books')->with('success', 'Data has been saved');
     }
 
     private function filterData($request) :Collection

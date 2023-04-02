@@ -9,4 +9,6 @@ use Illuminate\Database\Eloquent\Model;
 class Rating extends Model
 {
     use HasFactory, HasUuids;
+
+    protected $fillable = ['book_id', 'rating'];
 }
