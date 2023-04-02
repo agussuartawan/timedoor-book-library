@@ -41,8 +41,8 @@
                     <td>{{ $book->title }}</td>
                     <td>{{ $book->category->name }}</td>
                     <td>{{ $book->author->name }}</td>
-                    <td>{{ $book->averageRating() }}</td>
-                    <td>{{ $book->voter() }}</td>
+                    <td>{{ number_format($book->avg_rating, 2, '.', ',') }}</td>
+                    <td>{{ $book->voter }}</td>
                 </tr>
             @empty
                 <tr>

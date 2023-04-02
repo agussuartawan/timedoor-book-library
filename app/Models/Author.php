@@ -14,15 +14,4 @@ class Author extends Model
     {
         return $this->hasMany(Book::class);
     }
-
-    public function voter()
-    {
-        $books = $this->books()->get();
-        $voter = 0;
-        foreach ($books as $book) {
-            $voter = $voter + $book->voter();
-        }
-        
-        return $voter;
-    }
 }

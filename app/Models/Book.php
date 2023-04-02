@@ -22,18 +22,10 @@ class Book extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function averageRating() :float
-    {
-        return number_format($this->ratings()->avg('rating') ?? 0, 2, '.', ',');
-    }
-
     public function ratings() :HasMany
     {
         return $this->hasMany(Rating::class);
     }
 
-    public function voter()
-    {
-        return count($this->ratings) ?? 0;
-    }
+    
 }

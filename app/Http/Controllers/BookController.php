@@ -61,8 +61,8 @@ class BookController extends Controller
         $search = $request->search;
         $limit = $request->limit ?? 10;
 
-        $data = Book::with('ratings', 'category', 'author')
-            ->selectRaw('books.*, AVG(ratings.rating) as avg_rating')
+        $data = Book::with('category', 'author')
+            ->selectRaw('books.*, AVG(ratings.rating) as avg_rating, COUNT(ratings.rating) as voter')
             ->leftJoin('ratings', 'books.id', '=', 'ratings.book_id')
             ->leftJoin('categories', 'books.category_id', '=', 'categories.id');
 

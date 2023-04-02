@@ -15,7 +15,7 @@
                 <tr>
                     <td>{{ $key + 1 }}</td>
                     <td>{{ $author->name }}</td>
-                    <td>{{ $author->voter() }}</td>
+                    <td>{{ $author->voter }}</td>
                 </tr>
             @empty
                 <tr>
